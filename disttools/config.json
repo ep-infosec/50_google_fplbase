@@ -1,0 +1,80 @@
+{
+  "package": {
+    "name": "fplbase",
+    "url": "http://github.com/google/fplbase.git",
+    "branch": "develop",
+    "is_library": 1,
+    "third_party": 0,
+    "push": 1
+  },
+  "dependencies": [
+    {
+      "name": "fplutil",
+      "url": "http://github.com/google/fplutil.git",
+      "branch": "develop",
+      "is_library": 1,
+      "third_party": 0,
+      "push": 1
+    },
+    {
+      "name": "googletest",
+      "url": "http://github.com/google/googletest.git",
+      "branch": "master",
+      "revision": "13206d6f53aaff844f2d3595a01ac83a29e383db",
+      "is_library": 1,
+      "third_party": 1,
+      "push": 0
+    },
+    {
+      "name": "flatbuffers",
+      "url": "http://github.com/google/flatbuffers.git",
+      "branch": "master",
+      "is_library": 1,
+      "third_party": 0,
+      "push": 0
+    },
+    {
+      "name": "mathfu",
+      "url": "http://github.com/google/mathfu.git",
+      "branch": "develop",
+      "is_library": 1,
+      "third_party": 0,
+      "push": 1
+    },
+    {
+      "name": "sdl",
+      "url": "http://github.com/google/fplbase.git",
+      "branch": "sdl",
+      "is_library": 1,
+      "third_party": 1,
+      "push": 1
+    },
+    {
+      "name": "stb",
+      "url": "https://github.com/nothings/stb.git",
+      "branch": "master",
+      "revision": "c9ead07188b342350530e92e14542222c3ad9abe",
+      "is_library": 1,
+      "third_party": 1,
+      "push": 0
+    },
+    {
+      "name": "webp",
+      "url": "https://chromium.googlesource.com/webm/libwebp",
+      "branch": "0.4.1",
+      "is_library": 1,
+      "third_party": 1,
+      "push": 0
+    },
+    {
+      "name": "cardboard-java",
+      "url": "https://github.com/googlesamples/cardboard-java",
+      "branch": "master",
+      "revision": "1363a04a01f9fb4ed824c15ef9fb5d33da18883d",
+      "is_library": 1,
+      "prebuilts": 1,
+      "third_party": 0,
+      "push": 0
+    }
+  ]
+}

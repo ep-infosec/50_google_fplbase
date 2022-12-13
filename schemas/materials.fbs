@@ -1,0 +1,80 @@
+// Copyright 2014 Google Inc. All rights reserved.
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//     http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+// Definitions for the material system.
+
+include "common.fbs";
+
+namespace matdef;
+
+enum BlendMode:ubyte {
+  OFF = 0,
+  TEST,
+  ALPHA,
+  ADD,
+  ADDALPHA,
+  MULTIPLY,
+  PREMULTIPLIEDALPHA
+}
+
+enum TextureFormat:ubyte {
+  AUTO = 0,  // The default, picks based on loaded data.
+  F_8888,
+  F_888,
+  F_5551,
+  F_565,
+  F_8,
+  ASTC,  // https://en.wikipedia.org/wiki/Adaptive_Scalable_Texture_Compression
+  PKM,   // https://en.wikipedia.org/wiki/Ericsson_Texture_Compression
+  KTX,   // https://www.khronos.org/opengles/sdk/tools/KTX/
+  NATIVE,  // Uses the same format as the source file.
+  F_88,
+}
+
+enum TextureWrap:ubyte {
+  REPEAT = 0, // The default.
+  CLAMP = 1
+}
+
+table Material {
+  texture_filenames:[string];
+  blendmode:BlendMode;
+  // This vector corresponds to the textures above, if not present,
+  // all of them will default to AUTO.
+  desired_format:[TextureFormat];
+
+  // This vector corresponds to the textures above, if not present,
+  // all of them will default to texture's size.
+  original_size:[fplbase.Vec2i];
+
+  // Generate mipmaps for any textures in this material. If the file already
+  // contains mipmaps (e.g. .KTX), those will be used instead.
+  mipmaps:bool = true;
+
+  // The corresponding texture represents a cubemap in 1x6 form (all
+  // cube faces vertically on top of eachother) and should be loaded as a
+  // cubemap.
+  // Default OpenGL order: https://www.opengl.org/wiki/Cubemap_Texture
+  // This field does not need to be specified.
+  is_cubemap:[bool];
+
+  // Controls the value of the GL_TEXTURE_WRAP_[S,T] texture parameter,
+  // allowing for GL_REPEAT and GL_CLAMP_TO_EDGE.
+  // See https://www.khronos.org/opengles/sdk/docs/man/xhtml/glTexParameter.xml
+  wrapmode:TextureWrap = REPEAT;
+}
+
+root_type Material;
+file_identifier "FMAT";
+file_extension "fplmat";
